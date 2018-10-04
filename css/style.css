@@ -1,0 +1,61 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.mdl-grid {
+    margin: 0 auto;
+}
+
+.demo-card-event > #header-1 {
+    color: #F0F0F0;
+    background: url("../res/icon.png") center left 5% no-repeat rgb(0, 17, 255);
+    text-align: center;
+}
+
+.demo-card-event > #header-2 {
+    color: #F0F0F0;
+    background: url("../res/icon2.png") center left 5% no-repeat rgb(71, 173, 71);
+    text-align: center;
+}
+
+.demo-card-event > #header-3 {
+    color: #F0F0F0;
+    background: url("../res/icon3.png") center left 5% no-repeat rgb(180, 26, 26);
+    text-align: center;
+}
+
+.demo-card-event.mdl-card {
+    width: 290px;
+    min-height: 0;
+}
+
+@media only screen and (min-width: 480px) {
+    .demo-card-event.mdl-card {
+        width: 390px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .demo-card-event.mdl-card {
+        width: 490px;
+    }
+}
+
+.mdl-card__title-text {
+    margin-left: 70px;
+}
+
+.mdl-card__actions {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.mdl-layout__header-row > .header-text {
+    font-weight: 20px;
+    text-align: left;
+}
