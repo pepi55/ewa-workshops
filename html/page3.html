@@ -28,6 +28,40 @@
         });
     </script>
 
+    <script src="../js/tmp-data.js"></script>
+    <script defer>
+        var questions = JSON.parse(questions);
+        var sets = JSON.parse(sets);
+        var qId = 0;
+
+        function nextQuestion() {
+            var setTitleContainer = document.getElementById("titleContainer");
+            var setTitleContainerMobile = document.getElementById("titleContainerMobile");
+
+            var newHTML = '<h2 style="text-align: center;">SET_NAME</h2>';
+            var newHTMLMobile = '<h3 class="header_text">SET_NAME</h3>';
+
+            var setId = questions[qId].setId;
+
+            for (var i = 0; i < sets.length; i++) {
+                if (setId == sets[i].id) {
+                    var setNameHTML = newHTML.replace("SET_NAME", sets[i].name);
+                    var setNameMobileHTML = newHTMLMobile.replace("SET_NAME", sets[i].name);
+
+                    setTitleContainer.innerHTML = setNameHTML;
+                    setTitleContainerMobile.innerHTML = setNameMobileHTML;
+                }
+            }
+
+            var answerContainer = document.getElementById("answerContainer");
+            var templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
+
+            for (var i = 0; i < questions[qId].answers.length; i++) {
+                
+            }
+        }
+    </script>
+
     <title>Page 2</title>
 </head>
 
@@ -60,7 +94,7 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <div class="mdl-layout-spacer"></div>
-                <h3 class="header_text">Header 1</h3>
+                <div id="titleContainerMobile"></div>>
                 <div class="mdl-layout-spacer"></div>
             </div>
         </header>
@@ -95,7 +129,7 @@
 
             <div class="mdl-cell mdl-cell--8-col">
                 <div class="mdl-layout--large-screen-only">
-                    <h2 style="text-align: center;">Header 1</h2>
+                    <div id="titleContainer"></div>>
                 </div>
 
                 <hr size="1" />
@@ -105,44 +139,7 @@
                 <hr size="1" />
 
                 <ul class="mdl-list">
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1"
-                                style="margin-left: 20px; margin-right: 50px;">
-                                <input type="radio" id="list-option-1" class="mdl-radio__button" name="options" value="18" />
-                            </label>
-                        </span>
-
-                        <span class="mdl-list__item-primary-content">
-                            foo
-                        </span>
-                    </li>
-
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1"
-                                style="margin-left: 20px; margin-right: 50px;">
-                                <input type="radio" id="list-option-2" class="mdl-radio__button" name="options" value="18" />
-                            </label>
-                        </span>
-
-                        <span class="mdl-list__item-primary-content">
-                            bar
-                        </span>
-                    </li>
-
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1"
-                                style="margin-left: 20px; margin-right: 50px;">
-                                <input type="radio" id="list-option-3" class="mdl-radio__button" name="options" value="18" />
-                            </label>
-                        </span>
-
-                        <span class="mdl-list__item-primary-content">
-                            baz
-                        </span>
-                    </li>
+                    <div id="answerContainer"></div>
                 </ul>
 
                 <button style="float: right;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">

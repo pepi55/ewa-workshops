@@ -1,0 +1,2 @@
+questions = '[ { "id": 1, "setId": 1, "title": "Part 1", "question": "What?", "answers": [ { "text": "Yes", "correct": false }, { "text": "No", "correct": false }, { "text": "Yesn\'t", "correct": true } ] }, { "id": 2, "setId": 1, "title": "Part 2", "question": "Who?", "answers": [ { "text": "You", "correct": false }, { "text": "Me", "correct": false }, { "text": "Thanos", "correct": false }, { "text": "ThanosCar", "correct": true } ] } ]';
+sets = '[ { "id": 1, "name": "Maeymaeys" }, { "id": 2, "name": "Leftover Meems" }, { "id": 3, "name": "Lol" } ]';
