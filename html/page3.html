@@ -85,6 +85,8 @@
             var answerContainer = document.getElementById("answerContainer");
             var templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
 
+            answerContainer.innerHTML = '';
+
             for (var i = 0; i < questions[qId].answers.length; i++) {
                 var listBlock = document.createElement("li");
                 var answerText = questions[qId].answers[i].text;
@@ -101,12 +103,6 @@
                 listBlock.setAttribute("id", qId + "" + i);
 
                 listBlock.innerHTML = tempHTML;
-
-                if (qId > 0) {
-                    var id = prevQId + "" + i;
-                    var childToBeRemoved = document.getElementById(id);
-                    answerContainer.removeChild(childToBeRemoved);
-                }
 
                 answerContainer.appendChild(listBlock);
                 componentHandler.upgradeDom();
