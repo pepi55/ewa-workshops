@@ -19,14 +19,14 @@
     <script defer>
         function scoreResult() {
             let cardContainer = document.getElementById("cardContainer");
-            let cardHTML = '<div class="demo-card-event mdl-card mdl-shadow--4dp"> <div class="mdl-card__title" id="header-1"> <h2 class="mdl-card__title-text">CARD_TITLE</h2> </div> <div class="mdl-card__supporting-text"> SCORE_TEXT </div> <div class="mdl-card__actions mdl-card--border mdl-layout--large-screen-only"> <div class="mdl-layout-spacer"></div> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="page3.html">Play again</a> </div> </div>';
+            let score = 'Your final score is: ' + window.sessionStorage.getItem("score");
+            let cardTitle = 'Result';
+            let buttontext = 'Play again';
+            let hrefLink = 'page3.html';
 
-            let score = window.sessionStorage.getItem("score");
+            let cardHTML = `<div class="demo-card-event mdl-card mdl-shadow--4dp"> <div class="mdl-card__title" id="header-1"> <h2 class="mdl-card__title-text"> ${cardTitle} </h2> </div> <div class="mdl-card__supporting-text"> ${score} </div> <div class="mdl-card__actions mdl-card--border mdl-layout--large-screen-only"> <div class="mdl-layout-spacer"></div> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href=${hrefLink}> ${buttontext} </a> </div> </div>`;
 
-            let tmpHTML = cardHTML.replace("CARD_TITLE", "Result");
-            tmpHTML = tmpHTML.replace("SCORE_TEXT", "Your final score is: " + score);
-
-            cardContainer.innerHTML = tmpHTML;
+            cardContainer.innerHTML = cardHTML;
         }
     </script>
 

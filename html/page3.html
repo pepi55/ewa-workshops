@@ -81,7 +81,7 @@
                 stepperContainer.appendChild(stepperBlock);
             }
 
-            document.getElementById("questionContainer").innerHTML = '<h4 style="text-align: center;">' + questions[qId].question + '</h4>';
+            document.getElementById("questionContainer").innerHTML = `<h4 style="text-align: center;"> ${questions[qId].question} </h4>`;
 
             let answerContainer = document.getElementById("answerContainer");
             let templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
