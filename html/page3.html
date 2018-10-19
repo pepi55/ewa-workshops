@@ -34,7 +34,15 @@
         var sets = JSON.parse(sets);
         var qId = 0;
 
+        sessionStorage.setItem("score", 0);
+
         function nextQuestion() {
+            updateScore();
+
+            if (qId == questions.length) {
+                window.location.href = "score.html";
+            }
+
             var setTitleContainer = document.getElementById("titleContainer");
             var setTitleContainerMobile = document.getElementById("titleContainerMobile");
 
@@ -53,7 +61,26 @@
                 }
             }
 
-            var questionContainer = document.getElementById("questionContainer").innerHTML = '<h4 style="text-align: center;">' + questions[qId].question + '</h4>';
+            var stepperContainer = document.getElementById("stepperContainer");
+            var stepperHTML = '<div class="step-title waves-effect">STEPPER_TITLE</div>';
+
+            stepperContainer.innerHTML = '';
+
+            for (var i = 0; i < questions.length; i++) {
+                var stepperBlock = document.createElement("li");
+                var stepHTML = stepperHTML.replace("STEPPER_TITLE", questions[i].title);
+
+                if (questions[i].question == questions[qId].question) {
+                    stepperBlock.className = "step active";
+                } else {
+                    stepperBlock.className = "step";
+                }
+
+                stepperBlock.innerHTML = stepHTML;
+                stepperContainer.appendChild(stepperBlock);
+            }
+
+            document.getElementById("questionContainer").innerHTML = '<h4 style="text-align: center;">' + questions[qId].question + '</h4>';
 
             var answerContainer = document.getElementById("answerContainer");
             var templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
@@ -86,6 +113,23 @@
             }
 
             qId++;
+        }
+
+        function updateScore() {
+            var inputElements = document.getElementsByTagName("input");
+            var correct;
+
+            for (var i = 0; i < inputElements.length; i++) {
+                if (inputElements[i].type === 'radio' && inputElements[i].checked) {
+                    correct = inputElements[i].value;
+                }
+            }
+
+            if (correct) {
+                var score = window.sessionStorage.getItem("score");
+                score++;
+                window.sessionStorage.setItem("score", score);
+            }
         }
     </script>
 
