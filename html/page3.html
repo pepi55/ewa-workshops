@@ -53,19 +53,46 @@
                 }
             }
 
+            var questionContainer = document.getElementById("questionContainer").innerHTML = '<h4 style="text-align: center;">' + questions[qId].question + '</h4>';
+
             var answerContainer = document.getElementById("answerContainer");
             var templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
 
             for (var i = 0; i < questions[qId].answers.length; i++) {
-                // TODO: Loop through answers.
+                var listBlock = document.createElement("li");
+                var answerText = questions[qId].answers[i].text;
+                var correct = questions[qId].answers[i].correct;
+                var radioId = i + 1;
+                var prevQId = qId - 1;
+
+                var tempHTML = templateAnswerHTML.replace("ANSWER", answerText);
+                tempHTML = tempHTML.replace("FOR_RADIO_ID", radioId);
+                tempHTML = tempHTML.replace("RADIO_ID", radioId);
+                tempHTML = tempHTML.replace("RADIO_VALUE", correct);
+
+                listBlock.className = "mdl-list__item";
+                listBlock.setAttribute("id", qId + "" + i);
+
+                listBlock.innerHTML = tempHTML;
+
+                if (qId > 0) {
+                    var id = prevQId + "" + i;
+                    var childToBeRemoved = document.getElementById(id);
+                    answerContainer.removeChild(childToBeRemoved);
+                }
+
+                answerContainer.appendChild(listBlock);
+                componentHandler.upgradeDom();
             }
+
+            qId++;
         }
     </script>
 
     <title>Page 2</title>
 </head>
 
-<body>
+<body onload="nextQuestion()">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <!-- START COMP: Large link bar -->
         <header class="mdl-layout__header">
@@ -94,7 +121,7 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <div class="mdl-layout-spacer"></div>
-                <div id="titleContainerMobile"></div>>
+                <div id="titleContainerMobile"></div>
                 <div class="mdl-layout-spacer"></div>
             </div>
         </header>
@@ -129,12 +156,12 @@
 
             <div class="mdl-cell mdl-cell--8-col">
                 <div class="mdl-layout--large-screen-only">
-                    <div id="titleContainer"></div>>
+                    <div id="titleContainer"></div>
                 </div>
 
                 <hr size="1" />
 
-                <h4 style="text-align: center;">Lorem ipsum dolor sit amet magnus opus est</h4>
+                <div id="questionContainer"></div>
 
                 <hr size="1" />
 
