@@ -44,32 +44,32 @@
                 return;
             }
 
-            var setTitleContainer = document.getElementById("titleContainer");
-            var setTitleContainerMobile = document.getElementById("titleContainerMobile");
+            let setTitleContainer = document.getElementById("titleContainer");
+            let setTitleContainerMobile = document.getElementById("titleContainerMobile");
 
-            var newHTML = '<h2 style="text-align: center;">SET_NAME</h2>';
-            var newHTMLMobile = '<h3 class="header_text">SET_NAME</h3>';
+            let newHTML = '<h2 style="text-align: center;">SET_NAME</h2>';
+            let newHTMLMobile = '<h3 class="header_text">SET_NAME</h3>';
 
-            var setId = questions[qId].setId;
+            let setId = questions[qId].setId;
 
-            for (var i = 0; i < sets.length; i++) {
+            for (let i = 0; i < sets.length; i++) {
                 if (setId == sets[i].id) {
-                    var setNameHTML = newHTML.replace("SET_NAME", sets[i].name);
-                    var setNameMobileHTML = newHTMLMobile.replace("SET_NAME", sets[i].name);
+                    let setNameHTML = newHTML.replace("SET_NAME", sets[i].name);
+                    let setNameMobileHTML = newHTMLMobile.replace("SET_NAME", sets[i].name);
 
                     setTitleContainer.innerHTML = setNameHTML;
                     setTitleContainerMobile.innerHTML = setNameMobileHTML;
                 }
             }
 
-            var stepperContainer = document.getElementById("stepperContainer");
-            var stepperHTML = '<div class="step-title waves-effect">STEPPER_TITLE</div>';
+            let stepperContainer = document.getElementById("stepperContainer");
+            let stepperHTML = '<div class="step-title waves-effect">STEPPER_TITLE</div>';
 
             stepperContainer.innerHTML = '';
 
-            for (var i = 0; i < questions.length; i++) {
-                var stepperBlock = document.createElement("li");
-                var stepHTML = stepperHTML.replace("STEPPER_TITLE", questions[i].title);
+            for (let i = 0; i < questions.length; i++) {
+                let stepperBlock = document.createElement("li");
+                let stepHTML = stepperHTML.replace("STEPPER_TITLE", questions[i].title);
 
                 if (questions[i].question == questions[qId].question) {
                     stepperBlock.className = "step active";
@@ -83,19 +83,19 @@
 
             document.getElementById("questionContainer").innerHTML = '<h4 style="text-align: center;">' + questions[qId].question + '</h4>';
 
-            var answerContainer = document.getElementById("answerContainer");
-            var templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
+            let answerContainer = document.getElementById("answerContainer");
+            let templateAnswerHTML = '<li class="mdl-list__item"> <span class="mdl-list__item-secondary-action"> <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-FOR_RADIO_ID" style="margin-left: 20px; margin-right: 50px;"> <input type="radio" id="list-option-RADIO_ID" class="mdl-radio__button" name="options" value="RADIO_VALUE" /> </label> </span> <span class="mdl-list__item-primary-content"> ANSWER </span> </li>';
 
             answerContainer.innerHTML = '';
 
-            for (var i = 0; i < questions[qId].answers.length; i++) {
-                var listBlock = document.createElement("li");
-                var answerText = questions[qId].answers[i].text;
-                var correct = questions[qId].answers[i].correct;
-                var radioId = i + 1;
-                var prevQId = qId - 1;
+            for (let i = 0; i < questions[qId].answers.length; i++) {
+                let listBlock = document.createElement("li");
+                let answerText = questions[qId].answers[i].text;
+                let correct = questions[qId].answers[i].correct;
+                let radioId = i + 1;
+                let prevQId = qId - 1;
 
-                var tempHTML = templateAnswerHTML.replace("ANSWER", answerText);
+                let tempHTML = templateAnswerHTML.replace("ANSWER", answerText);
                 tempHTML = tempHTML.replace("FOR_RADIO_ID", radioId);
                 tempHTML = tempHTML.replace("RADIO_ID", radioId);
                 tempHTML = tempHTML.replace("RADIO_VALUE", correct);
@@ -113,18 +113,19 @@
         }
 
         function updateScore() {
-            var inputElements = document.getElementsByTagName("input");
-            var correct;
+            let inputElements = document.getElementsByTagName("input");
+            let correct;
 
-            for (var i = 0; i < inputElements.length; i++) {
+            for (let i = 0; i < inputElements.length; i++) {
                 if (inputElements[i].type === 'radio' && inputElements[i].checked) {
                     correct = inputElements[i].value;
                 }
             }
 
-            if (correct) {
-                var score = window.sessionStorage.getItem("score");
+            if (correct == 'true') {
+                let score = window.sessionStorage.getItem("score");
                 score++;
+                console.log(score);
                 window.sessionStorage.setItem("score", score);
             }
         }

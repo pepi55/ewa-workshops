@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Local stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Pre-made stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+    <!-- Scripts -->
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <script defer>
+        function scoreResult() {
+            let cardContainer = document.getElementById("cardContainer");
+            let cardHTML = '<div class="demo-card-event mdl-card mdl-shadow--4dp"> <div class="mdl-card__title" id="header-1"> <h2 class="mdl-card__title-text">CARD_TITLE</h2> </div> <div class="mdl-card__supporting-text"> SCORE_TEXT </div> <div class="mdl-card__actions mdl-card--border mdl-layout--large-screen-only"> <div class="mdl-layout-spacer"></div> <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="page3.html">Play again</a> </div> </div>';
+
+            let score = window.sessionStorage.getItem("score");
+
+            let tmpHTML = cardHTML.replace("CARD_TITLE", "Result");
+            tmpHTML = tmpHTML.replace("SCORE_TEXT", "Your final score is: " + score);
+
+            cardContainer.innerHTML = tmpHTML;
+        }
+    </script>
+
+    <title>Score Result</title>
+</head>
+
+<body onload="scoreResult()">
+    <!-- Content starts from here -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <!-- START COMP: Large link bar -->
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="../index.html">Home</a>
+                </nav>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="#">Header 1</a>
+                    <a class="mdl-navigation__link" href="#">Header 2</a>
+                </nav>
+            </div>
+        </header>
+        <!-- END COMP: Large link bar -->
+
+        <!-- START COMP: Small link bar -->
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="../index.html">Home</a>
+                <a class="mdl-navigation__link" href="#">Header 1</a>
+                <a class="mdl-navigation__link" href="#">Header 2</a>
+            </nav>
+        </div>
+        <!-- END COMP: Small link bar -->
+
+        <!-- START COMP: Title -->
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <div class="mdl-layout-spacer"></div>
+                <h3 class="header_text">Score</h3>
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <!-- END COMP: Title -->
+
+        <div class="content-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--12-col">
+                <div id="cardContainer"></div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </div>
+</body>
+
+</html>
