@@ -132,24 +132,7 @@
 
             <div class="mdl-cell mdl-cell--4-col  mdl-layout--large-screen-only">
                 <ul class="stepper linear" style="list-style-type: none;">
-                    <li class="step active">
-                        <div class="step-title waves-effect">Header 1</div>
-                    </li>
-                    <li class="step">
-                        <div class="step-title waves-effect">Header 2</div>
-                    </li>
-                    <li class="step">
-                        <div class="step-title waves-effect">Header 3</div>
-                    </li>
-                    <li class="step">
-                        <div class="step-title waves-effect">Header 4</div>
-                    </li>
-                    <li class="step">
-                        <div class="step-title waves-effect">Header 5</div>
-                    </li>
-                    <li class="step">
-                        <div class="step-title waves-effect">Header 6</div>
-                    </li>
+                    <div id="stepperContainer"></div>
                 </ul>
             </div>
 
@@ -169,7 +152,7 @@
                     <div id="answerContainer"></div>
                 </ul>
 
-                <button style="float: right;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                <button onclick="nextQuestion()" style="float: right;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     Next
                 </button>
             </div>
