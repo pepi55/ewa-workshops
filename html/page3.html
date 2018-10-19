@@ -18,7 +18,7 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
     <script src="../js/materialize-stepper.min.js"></script>
-    <script src="http://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+    <script defer src="http://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
 
     <script defer>
         $(function () {
@@ -34,13 +34,14 @@
         var sets = JSON.parse(sets);
         var qId = 0;
 
-        sessionStorage.setItem("score", 0);
+        window.sessionStorage.setItem("score", 0);
 
         function nextQuestion() {
             updateScore();
 
             if (qId == questions.length) {
                 window.location.href = "score.html";
+                return;
             }
 
             var setTitleContainer = document.getElementById("titleContainer");
