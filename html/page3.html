@@ -28,13 +28,36 @@
         });
     </script>
 
-    <script src="../js/tmp-data.js"></script>
     <script defer>
-        var questions = JSON.parse(questions);
-        var sets = JSON.parse(sets);
         var qId = 0;
 
         window.sessionStorage.setItem("score", 0);
+
+        let questions;
+        let sets;
+
+        function init() {
+            let questionsURL = "https://api.myjson.com/bins/ar320"; //"http://localhost:8080/servlet/QuestionsAPIServlet";
+            let promise = fetch(questionsURL);
+
+            promise.then(response => {
+                return response.json();
+            }).then(json => questions = json);
+
+            promise.catch(error => console.log(error));
+
+            let setsURL = "https://api.myjson.com/bins/15rro8"; //"http://localhost:8080/servlet/SetsAPIServlet";
+            promise = fetch(setsURL);
+
+            promise.then(response => {
+                return response.json();
+            }).then(json => {
+                sets = json;
+                nextQuestion();
+            });
+
+            promise.catch(error => console.log(error));
+        }
 
         function nextQuestion() {
             updateScore();
@@ -134,7 +157,7 @@
     <title>Page 2</title>
 </head>
 
-<body onload="nextQuestion()">
+<body onload="init()">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <!-- START COMP: Large link bar -->
         <header class="mdl-layout__header">
